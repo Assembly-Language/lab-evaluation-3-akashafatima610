@@ -1,0 +1,55 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "assemble asm-file",
+      "type": "shell",
+      "command": "D:\\Visual Studio 2022\\VC\\Tools\\MSVC\\14.42.34433\\bin\\Hostx86\\x86\\ml",
+      "args": [
+        "/c",
+        "/I", "D:\\NTU_LIFE\\3rd Smester\\Comp Organization & Assembly lang\\AS24\\UnZip Files\\Irvine-Lib",  // Path to Irvine include files
+        "asm-file.asm"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "compile c-file",
+      "type": "shell",
+      "command": "D:\\Visual Studio 2022\\VC\\Tools\\MSVC\\14.42.34433\\bin\\Hostx86\\x86\\cl",
+      "args": [
+          "/I", "D:\\Visual Studio 2022\\VC\\Tools\\MSVC\\14.42.34433\\include",
+      "/I", "D:\\Windows Kits\\10\\Include\\10.0.22621.0\\ucrt",
+        "/c",
+        "c-file.c",
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$msCompile"]
+    },
+    {
+      "label": "link generate mixed exe file",
+      "type": "shell",
+      "command": "D:\\Visual Studio 2022\\VC\\Tools\\MSVC\\14.42.34433\\bin\\Hostx86\\x86\\link",
+      "args": [
+        "asm-file.obj",
+        "c-file.obj",
+        "/OUT:mixed.exe",
+        "/LIBPATH:D:\\Visual Studio 2022\\VC\\Tools\\MSVC\\14.42.34433\\lib\\x86",
+        "/LIBPATH:D:\\Windows Kits\\10\\Lib\\10.0.22621.0\\um\\x86",
+      "/LIBPATH:D:\\Windows Kits\\10\\Lib\\10.0.22621.0\\ucrt\\x86",
+      "D:\\NTU_LIFE\\3rd Smester\\Comp Organization & Assembly lang\\AS24\\UnZip Files\\Irvine-Lib\\*.lib"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$msCompile"]
+    }
+  ]
+}

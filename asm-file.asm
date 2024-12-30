@@ -2,26 +2,35 @@
 
 INCLUDE Irvine32.inc
 .data
-;public asmfunc
-msg db "assebly procedure end now",0
+;Write a program that takes an array of numbers (with both positive and negative values) 
+;from the user (or declare ) and displays the total no. of  positive numbers from the array.
+msg db "Total number of positive numbers: ", 0
 
 
 .code
-asmfunc PROC p1:DWORD, p2:DWORD
+count PROC p1:DWORD, p2:DWORD
     
     push ebp
     mov ebp,esp
-    mov eax, [ebp+12
-\] ; Move the first parameter into EAX
-    call writedec
-    call crlf
-    ;add eax, p2 ; Add the second parameter to EAX
-    call writedec
-    call crlf
-    mov edx, offset msg
-    call writestring
-    call crlf
-    
+    mov ecx, [ebp + 8]
+    mov eax, [ebp + 12] 
+    mov edx, 0
+Loop_Start:
+    cmp eax, 0
+    je Loop_End
+    mov esi, [ecx]
+    cmp esi, 0
+    jle not_Positive
+    inc edx
+
+not_Positive:
+    add ecx, 4
+    dec eax
+    jmp Loop_Start
+Loop_End:
+    mov eax, edx
+    mov esp, ebp
+    pop ebp
     ret
-asmfunc ENDP
+count ENDP
 end
