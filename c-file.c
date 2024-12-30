@@ -34,7 +34,6 @@ int main() {
 
     int positive_count = count(user_array, num);
     printf("Total number of positive values in the array is: %d\n", positive_count);
-
     getch();
 
     printf("Back to C!\n"); // Printing in C
